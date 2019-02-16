@@ -2,6 +2,7 @@
 
 namespace yandex\alisa\traits;
 
+use yandex\alisa\core\StringHelper;
 use yandex\alisa\Result;
 
 trait SBlock {
@@ -72,12 +73,12 @@ trait SBlock {
 
 					if( is_array($value['question']) ) {
 						foreach ($value['question'] as $question) {
-							if( mb_strtolower($question, 'UTF-8') == $command ) {
+							if(StringHelper::equals($question, $command)) {
 								$foundCommand = true;
 							}
 						}
 					} else {
-						if( mb_strtolower($value['question'], 'UTF-8') == $command ) {
+						if(StringHelper::equals($value['question'], $command)) {
 							$foundCommand = true;
 						}
 					}

@@ -2,6 +2,8 @@
 
 namespace yandex\alisa\context;
 
+use yandex\alisa\core\StringHelper;
+
 class ContextManager
 {
     /** @var ContextRepository  */
@@ -82,7 +84,7 @@ class ContextManager
                     return $contextItem;
 
                 // find personal action to massage (no save message)
-                } elseif (mb_strtolower($contextItem['title'], 'UTF-8') == mb_strtolower($command, 'UTF-8')){ //@todo use $this->caseSensitive == true
+                } elseif (StringHelper::equals($contextItem['title'], $command)){ //@todo use $this->caseSensitive == true
                     return $contextItem;
                 }
             }

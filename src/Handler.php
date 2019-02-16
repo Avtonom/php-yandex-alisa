@@ -7,6 +7,7 @@ use League\Flysystem\Filesystem;
 use RomaricDrigon\MetaYaml\Loader\YamlLoader;
 use Lazer\Classes\Database as DB;
 use yandex\alisa\context\ContextManager;
+use yandex\alisa\core\StringHelper;
 
 define('LAZER_DATA_PATH', realpath( __DIR__).'/database/');
 
@@ -159,7 +160,7 @@ class Handler {
             }
             $math = mb_strtolower($math, 'UTF-8');
             $math = "/".$math."/";
-            if( preg_match($math, $command) ) {
+            if( preg_match($math, $command) || StringHelper::equals($math, $command)) {
                 $this->vars = $var;
                 return true;
             }
@@ -188,8 +189,8 @@ class Handler {
                 }
                 $math = mb_strtolower($math, 'UTF-8');
                 $math = "/".$math."/";
-                if( preg_match($math, $command) ) {
-                    $this->vars = $var;
+                if( preg_match($math, $command) || StringHelper::equals($math, $command)) {
+                        $this->vars = $var;
                     return true;
                 } else {
                     continue;
